@@ -52,10 +52,20 @@ class Ndarray
         return arr[index];
     }
 
+    public double get(int idx)
+    {
+        return arr[idx];
+    }
+
     public void put(int idx[], double val)
     {
         int index = find_index(idx);
         arr[index] = val;
+    }
+
+    public void put(int idx, double val)
+    {
+        arr[idx] = val;
     }
 
     public Ndarray dot(Ndarray a, Ndarray b)
@@ -96,7 +106,9 @@ class Ndarray
         }
         Ndarray res = new Ndarray(a.shape);
         for(int i = 0; i < n; i++)
-            res.put_linear(i, a.get_linear(i) * b.get_linear(i));  
+            res.put(i, a.get(i) * b.get(i)); 
+            
+        return res;
     }
 
     public void reshape(int new_shape[])
