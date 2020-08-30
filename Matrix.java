@@ -165,6 +165,52 @@ class Matrix
         return res;
     }
 
+    public double sum()
+    {
+        double sum = 0;
+        for(int i = 0; i < this.rows; i++)
+        {
+            for(int j = 0; j < this.cols; j++)
+                sum += arr[i][j];
+        }
+
+        return sum;
+    }
+
+    public Matrix sum(int axis)
+    {
+        if(axis == 0)
+        {
+            Matrix sum = new Matrix(1, this.cols);
+            for(int i = 0; i < this.cols; i++)
+            {
+                double res = 0;
+                for(int j = 0; j < this.rows; j++)
+                    res += arr[j][i];
+                sum.put(0, i, res);
+            }
+
+            return sum;
+        }
+        else if(axis == 1)
+        {
+            Matrix sum = new Matrix(this.rows, 1);
+            for(int i = 0; i < this.rows; i++)
+            {
+                double res = 0;
+                for(int j = 0; j < this.cols; j++)
+                {
+                    res += arr[i][j];
+                }
+                sum.put(i,0,res);
+            }
+            
+            return sum;
+        }
+        else
+            throw new IllegalArgumentException();
+    }
+
     //TODO: reshape(), eadd()
     /*public void reshape(int new_shape[])
     {
